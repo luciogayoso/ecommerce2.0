@@ -8,7 +8,7 @@ server.get('/', (req, res) => {
     if (!cache.hasOwnProperty(search)) {
     axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}`)
         .then(rest => {
-            let productos = rest.data.results.map((product, i) => {
+            let productos = rest.data.results.map(product => {
                    return ({
                         id: product.id,
                         title: product.title,
@@ -19,6 +19,7 @@ server.get('/', (req, res) => {
                         condition: product.condition
                     })
             })
+            console.log('soy server');
             cache[search] = productos
             res.json(cache[search]);
         })
@@ -26,6 +27,7 @@ server.get('/', (req, res) => {
             res.send('error: ' + err);
         })
     }else {
+        console.log('soy cache');
         res.json(cache[search]);
     }
 })
