@@ -5,6 +5,9 @@ let cache = {};
 
 server.get('/', (req, res) => {
     const search = req.query.query;
+    if(search === 'undefined'){
+       return res.json([]);
+    }
     if (!cache.hasOwnProperty(search)) {
     axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}`)
         .then(rest => {
@@ -19,7 +22,7 @@ server.get('/', (req, res) => {
                         condition: product.condition
                     })
             })
-            console.log('soy server');
+            // console.log('soy server');
             cache[search] = productos
             res.json(cache[search]);
         })
@@ -27,7 +30,7 @@ server.get('/', (req, res) => {
             res.send('error: ' + err);
         })
     }else {
-        console.log('soy cache');
+        // console.log('soy cache');
         res.json(cache[search]);
     }
 })

@@ -1,18 +1,25 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { detalleProduct } from '../../actions/action';
+import { Button, Card } from 'react-bootstrap';
 
-const Product = ({product}) => {
+const Product = ({ product }) => {
+
+    const dispatch = useDispatch();
+
     return (
-
-        <div className="card" style={{width: "18rem"}}>
-            <img src={product.thumbnail} className="card-img-top" alt="esta es una imagen" />
-                <div className="card-body">
-                    <p className="card-text">{product.title}</p>
-                    <p className="card-text">{product.price}</p>
-                    <button>Ver mas</button>
-                </div>
-        </div>
-    
+        <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={product.thumbnail} />
+            <Card.Body>
+                <Card.Text>
+                    {product.title}
+                    ${product.price}
+                </Card.Text>
+                <Link to={'/detalle'}><Button variant="primary" type="button" onClick={() => dispatch(detalleProduct(product))}>Ver mas</Button></Link>
+            </Card.Body>
+        </Card>
     );
 }
 

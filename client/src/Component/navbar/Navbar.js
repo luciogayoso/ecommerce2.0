@@ -11,15 +11,25 @@ const NavBar = () => {
                 <ul style={{display:'flex',listStyle:'none'}}>
                     <li>
                         <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Filtrar
+                            <Dropdown.Toggle variant="outline-success" id="dropdown-basic">
+                                Orenar
                         </Dropdown.Toggle>
 
                             <Dropdown.Menu>
                                 <Dropdown.Item href="#/action-2">Precio ascendete</Dropdown.Item>
                                 <Dropdown.Item href="#/action-3">Precio descendente</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Condicion nuevo</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Condicion usado</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </li>
+                    <li>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="outline-primary ml-2 mr-2" id="dropdown-basic">
+                                Filtrar
+                        </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="#/action-2">Condicion nuevo</Dropdown.Item>
+                                <Dropdown.Item href="#/action-3">condicion usado</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </li>
