@@ -7,6 +7,7 @@ import { paginacion } from '../../actions/action'
 const Catalogue = () => {
 
     const products1 = useSelector(state => state.products);
+    console.log(products1)
     const paginacion1 = useSelector(state => state.paginacion);
     const antes = useSelector(state => state.antes);
     const despues = useSelector(state => state.despues);
@@ -36,11 +37,12 @@ const Catalogue = () => {
         <>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center' }}>
                 {
-                    paginacion1 ? paginacion1.map(product => {
+                    !paginacion1 ? <h3 className='mt-3'>Nececita buscar algun producto</h3>
+                    :
+                    paginacion1.map(product => {
                         return <Card key={product.id} product={product} />
                     })
-                    :
-                    <h3 className='mt-3'>Nececita buscar algun producto</h3>
+                
                 }
             </div>
             <nav aria-label="Page navigation example">

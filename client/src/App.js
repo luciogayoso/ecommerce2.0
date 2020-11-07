@@ -9,7 +9,7 @@ function App() {
   return (
     <Router >
     <Route path='/' component={Navbar}/>
-    <Route exact path='/' component={Catalogue}/>
+    <Route exact path='/catalogue' component={Catalogue}/>
     <Route exact path='/detalle' component={Card} />
     </Router>
   );

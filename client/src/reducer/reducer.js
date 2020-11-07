@@ -1,4 +1,4 @@
-import { BUSCAR_PRODUCTOIDS, DETALLE_PRODUCTO, PAGINACION } from "../actions/action";
+import { BUSCAR_PRODUCTOIDS, DETALLE_PRODUCTO, PAGINACION,ORDENA_DESENDETE,ORDENA_ASCENDETE } from "../actions/action";
 
 const initalStore = {
     products: [],
@@ -47,6 +47,41 @@ const reducer = (state = initalStore, actions) => {
                 paginaActual: actions.page,
                 antes: actions.page === 0 ? 1 : actions.page - 1,
                 despues: actions.page === 3 ? 2 : actions.page - 1 + 2
+            }
+        }
+
+        case ORDENA_DESENDETE: {
+
+            return {
+                ...state,
+                paginacion: actions.products.sort((a,b) =>{
+                
+                    if (b.price > a.price) {
+                        return 1;
+                    }
+                    if (a.price > b.price) {
+                        return -1;
+                    }
+                    return 0;
+                }).slice(0,30)
+            }
+        }
+        
+
+        case ORDENA_ASCENDETE: {
+        
+            return {
+                ...state,
+                paginacion: actions.products.sort((a,b)=> {
+                    if (a.price > b.price) {
+                        return 1;
+                      }
+                    if (a.price < b.price) {
+                        return -1;
+                      }
+                        return 0;
+                }).slice(0,30)
+
             }
         }
 

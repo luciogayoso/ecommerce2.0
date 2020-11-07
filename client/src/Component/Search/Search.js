@@ -24,7 +24,7 @@ const Search = () => {
     return (
 
         <div className={styles.container}>
-            <Link to={'/'}><Button type="submit" className={styles.boton} variant="light" onClick={buscador}><ImSearch/></Button></Link>
+            <Link to={'/catalogue'}><Button type="submit" className={styles.boton} variant="light" onClick={buscador}><ImSearch/></Button></Link>
             <input className={styles.buscador} type="text" placeholder="Buscar productos"
                 onChange={handlerSerch} />
         </div>

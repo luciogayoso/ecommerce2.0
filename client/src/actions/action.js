@@ -2,6 +2,8 @@ import axios from 'axios';
 export const BUSCAR_PRODUCTOIDS = "BUSCAR_PRODUCTOIDS";
 export const DETALLE_PRODUCTO = "DETALLE_PRODUCTO";
 export const PAGINACION = 'PAGINACION';
+export const ORDENA_DESENDETE = 'ORDENA_DESENDETE';
+export const ORDENA_ASCENDETE = 'ORDENA_ASCENDETE';
 
 export function mostrarBusqueda(search){
     return function(dispatch){
@@ -31,5 +33,19 @@ export function paginacion(products, page,limit) {
         products: products,
         page: page,
         limit: limit,
+    }
+}
+
+export function orenarDesendete(products) {
+    return {
+        type: ORDENA_DESENDETE,
+        products: products
+    }
+}
+
+export function orenarAendente(products) {
+    return {
+        type: ORDENA_ASCENDETE,
+        products: products
     }
 }
