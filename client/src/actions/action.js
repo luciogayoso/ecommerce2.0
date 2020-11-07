@@ -30,6 +30,6 @@ export function paginacion(products, page,limit) {
         type: PAGINACION,
         products: products,
         page: page,
-        limit: limit
+        limit: limit,
     }
 }

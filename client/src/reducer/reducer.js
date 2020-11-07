@@ -1,17 +1,20 @@
 import { BUSCAR_PRODUCTOIDS, DETALLE_PRODUCTO, PAGINACION } from "../actions/action";
 
-const initalStore ={
-    products:[],
+const initalStore = {
+    products: [],
     detalle_producto: [],
-    paginacion: []
+    paginacion: [],
+    paginaActual: 0,
+    antes: 0,
+    despues: 0
 }
 
-const reducer = (state=initalStore, actions) =>{
-    switch(actions.type){
-        
-        case BUSCAR_PRODUCTOIDS:{
-            return{
-               products:actions.producto.data
+const reducer = (state = initalStore, actions) => {
+    switch (actions.type) {
+
+        case BUSCAR_PRODUCTOIDS: {
+            return {
+                products: actions.producto.data
             }
         }
 
@@ -25,25 +28,28 @@ const reducer = (state=initalStore, actions) =>{
 
         case PAGINACION: {
 
-            let fin = 30 * actions.page;
-            let inicio = 0;
-            if(actions.page === 1){
-                inicio = 30 * (actions.page -1);
-            }else {
-                inicio = 30 * (actions.page -1);
+            let inicio;
+            let fin;
+            if (actions.page > 0 && actions.page <= actions.limit) {
+                inicio = 30 * (actions.page - 1);
+                fin = 30 * actions.page;
+            }else if (actions.page <= 0){
+                inicio = 0;
+                fin = 30;
+            }else if (actions.page > actions.limit){
+                inicio = 30 * (actions.limit - 1);
+                fin = 30 * (actions.limit);
             }
-            if (actions.page !== 1 && actions.page > actions.limit) {
-                fin = 0;
-                fin = actions.products.length -1;
-            }
-            console.log(inicio+" "+fin)
+
             return {
                 ...state,
-                paginacion: actions.products.slice(inicio,fin)
-                
+                paginacion: actions.products.slice(inicio, fin),
+                paginaActual: actions.page,
+                antes: actions.page === 0 ? 1 : actions.page - 1,
+                despues: actions.page === 3 ? 2 : actions.page - 1 + 2
             }
         }
-        
+
         default: return state
     }
 }

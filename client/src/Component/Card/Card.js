@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const Card = () => {
     const product = useSelector(state => state.detalle_producto);
-    console.log(product);
+
     return (
 
         <div className="card mb-3 ml-4  mt-4" style={{ maxWidth: '540px' }}>
