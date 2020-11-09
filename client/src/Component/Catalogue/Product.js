@@ -16,6 +16,7 @@ const Product = ({ product }) => {
                 <Card.Text>
                     {product.title}
                     ${product.price}
+                    Condición:{product.condition}
                 </Card.Text>
                 <Link to={'/detalle'}><Button variant="primary" type="button" onClick={() => dispatch(detalleProduct(product))}>Ver mas</Button></Link>
             </Card.Body>

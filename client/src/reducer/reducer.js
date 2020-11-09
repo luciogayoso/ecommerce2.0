@@ -1,12 +1,14 @@
-import { BUSCAR_PRODUCTOIDS, DETALLE_PRODUCTO, PAGINACION,ORDENA_DESENDETE,ORDENA_ASCENDETE } from "../actions/action";
+import { BUSCAR_PRODUCTOIDS, DETALLE_PRODUCTO, PAGINACION,ORDENA_DESENDETE,ORDENA_ASCENDETE,FILTRAR_USADO,FILTRAR_NUEVO } from "../actions/action";
 
 const initalStore = {
     products: [],
+    products1: [],
     detalle_producto: [],
     paginacion: [],
     paginaActual: 0,
     antes: 0,
-    despues: 0
+    despues: 0, 
+    filtrado: false
 }
 
 const reducer = (state = initalStore, actions) => {
@@ -14,7 +16,9 @@ const reducer = (state = initalStore, actions) => {
 
         case BUSCAR_PRODUCTOIDS: {
             return {
-                products: actions.producto.data
+                ...state,
+                products: actions.producto.data,
+                products1: actions.producto.data
             }
         }
 
@@ -30,6 +34,7 @@ const reducer = (state = initalStore, actions) => {
 
             let inicio;
             let fin;
+
             if (actions.page > 0 && actions.page <= actions.limit) {
                 inicio = 30 * (actions.page - 1);
                 fin = 30 * actions.page;
@@ -40,10 +45,10 @@ const reducer = (state = initalStore, actions) => {
                 inicio = 30 * (actions.limit - 1);
                 fin = 30 * (actions.limit);
             }
-
+            
             return {
                 ...state,
-                paginacion: actions.products.slice(inicio, fin),
+                paginacion:  actions.products.slice(inicio, fin),
                 paginaActual: actions.page,
                 antes: actions.page === 0 ? 1 : actions.page - 1,
                 despues: actions.page === 3 ? 2 : actions.page - 1 + 2
@@ -81,9 +86,25 @@ const reducer = (state = initalStore, actions) => {
                       }
                         return 0;
                 }).slice(0,30)
-
             }
         }
+
+        case FILTRAR_USADO: {
+            return {
+                ...state,
+                products: actions.products.filter(producto => producto.condition === 'used'),
+                filtrado:true
+            }
+        }
+
+        case FILTRAR_NUEVO: {
+            return {
+                ...state,
+                products: actions.products.filter(producto => producto.condition === 'new'),
+                filtrado:true
+            }
+        }
+
 
         default: return state
     }

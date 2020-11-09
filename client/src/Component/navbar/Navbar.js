@@ -4,13 +4,15 @@ import Search from '../Search/Search';
 import styles from './navbar.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dropdown } from 'react-bootstrap'
-import { orenarAendente, orenarDesendete } from '../../actions/action'
+import { orenarAendente, orenarDesendete, filtrarUsado, filtarNuevo} from '../../actions/action'
 import { Link } from 'react-router-dom';
 
 
 const NavBar = () => {
 
-    const products1 = useSelector(state => state.products);
+    const products1 = useSelector(state => state.products1);
+    // const filnuevo = useSelector(state => state.filtradoNuevo);
+    // const filusado = useSelector(state => state.filtradoUsado);
     const dispatch = useDispatch();
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -52,8 +54,8 @@ const NavBar = () => {
 
                             <Dropdown.Menu>
                                 
-                                    <Dropdown.Item href="#!"><Link to={'/catalogue'} onClick={() => dispatch(orenarAendente(products1))}>Precio ascendete</Link></Dropdown.Item>
-                                    <Dropdown.Item href="#!"><Link to={'/catalogue'} onClick={()=> dispatch(orenarDesendete(products1))}>Precio descendente</Link></Dropdown.Item>
+                                    <Dropdown.Item href="#!"><Link to={'/filtro'} onClick={() => dispatch(orenarAendente(products1))}>Precio ascendete</Link></Dropdown.Item>
+                                    <Dropdown.Item href="#!"><Link to={'/filtro'} onClick={()=> dispatch(orenarDesendete(products1))}>Precio descendente</Link></Dropdown.Item>
                                 
                             </Dropdown.Menu>
                         </Dropdown>
@@ -65,8 +67,8 @@ const NavBar = () => {
                         </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-2">Condicion nuevo</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">condicion usado</Dropdown.Item>
+                                <Dropdown.Item href="#!"><Link to={'/filtro'} onClick={()=> dispatch(filtarNuevo(products1))}>Condicion nuevo</Link></Dropdown.Item>
+                                <Dropdown.Item href="#!"><Link to={'/filtro'} onClick={()=>dispatch(filtrarUsado(products1))}>Condicion usado</Link></Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </li>
