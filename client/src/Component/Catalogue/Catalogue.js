@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Card from './Product';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from './catalogue.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { paginacion } from '../../actions/action'
 
@@ -47,11 +48,11 @@ const Catalogue = () => {
             dispatch(paginacion(products1, 1, i))
         }
 
-    }, [products1,dispatch,i])
+    }, [products1,dispatch,i,filtrado,products2])
 
     return (
         <>
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center' }}>
+            <div className={styles.catalogue}>
                 {
                     !paginacion1 ? <h3 className='mt-3'>Nececita buscar algun producto</h3>
                     :

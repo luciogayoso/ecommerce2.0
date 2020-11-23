@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from './card.module.css';
 import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
@@ -8,7 +9,7 @@ const Card = () => {
 
     return (
 
-        <div className="card mb-3 ml-4  mt-4" style={{ maxWidth: '540px' }}>
+        <div className="card mb-3 ml-4  mt-4 mr-3">
             <div className="row no-gutters">
                 <div className="col-md-8">
                     <div className="card-body">

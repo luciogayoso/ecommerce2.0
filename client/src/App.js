@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './Component/navbar/Navbar';
+import Navbar from './Component/navbar/Navbar1';
 import Catalogue from './Component/Catalogue/Catalogue';
 import Card from './Component/Card/Card';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
